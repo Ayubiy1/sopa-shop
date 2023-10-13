@@ -1,24 +1,26 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import "./App.css";
+import { Route, Routes } from "react-router";
+import Menu from "./components/pages/menu";
+import { useQuery } from "react-query";
+import { Outlet, useLocation } from "react-router";
+import { api } from "./api";
+import Login from "./components/pages/login";
 
 function App() {
+  const {
+    data: dataUsers,
+    isLoading: isLoadingUsers,
+    isError: isErrorUsers,
+  } = useQuery("users", () => api.get("/users"));
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Routes>
+        <Route path="/" element={<Menu />}>
+          <Route path="/login" element={<Login />} />
+        </Route>
+      </Routes>
     </div>
   );
 }

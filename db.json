@@ -1,0 +1,48 @@
+{
+  "posts": [
+    {
+      "id": 1,
+      "title": "json-server",
+      "author": "typicode"
+    }
+  ],
+  "comments": [
+    {
+      "id": 1,
+      "body": "some comment",
+      "postId": 1
+    }
+  ],
+  "users": [
+    {
+      "id": 1,
+      "name": "Abdulloh Umarov",
+      "userName": "Abu",
+      "password": 12121
+    },
+    {
+      "id": 2,
+      "name": "Jasur Halilov",
+      "userName": "Jeck",
+      "password": 12121
+    },
+    {
+      "id": 3,
+      "name": "Otabek Mahmudov",
+      "userName": "Saladin",
+      "password": 12121
+    },
+    {
+      "id": 4,
+      "name": "Diyor",
+      "userName": "Diko",
+      "password": 12121
+    },
+    {
+      "name": "Admin",
+      "userName": "admin",
+      "password": "admin",
+      "id": 5
+    }
+  ]
+}
