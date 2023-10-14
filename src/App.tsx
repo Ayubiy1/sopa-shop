@@ -6,6 +6,7 @@ import { useQuery } from "react-query";
 import { Outlet, useLocation } from "react-router";
 import { api } from "./api";
 import Login from "./components/pages/login";
+import Home from "./components/pages/home";
 
 function App() {
   const {
@@ -18,8 +19,11 @@ function App() {
     <div className="App">
       <Routes>
         <Route path="/" element={<Menu />}>
-          <Route path="/login" element={<Login />} />
+          <Route path="/" element={<Home />} />
+          <Route path="/men" element={<>Men</>} />
         </Route>
+
+        <Route path="/login" element={<Login />} />
       </Routes>
     </div>
   );

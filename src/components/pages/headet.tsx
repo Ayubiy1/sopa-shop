@@ -29,9 +29,24 @@ const Header = () => {
   //
   const items: MenuProps["items"] = [
     {
-      label: "Men",
+      label: (
+        <p onClick={() => navigate("/")}>
+          <SettingOutlined />
+          All
+        </p>
+      ),
+      key: "All",
+      // icon: <SettingOutlined />,
+    },
+    {
+      label: (
+        <p onClick={() => navigate("men")}>
+          <MailOutlined />
+          Men
+        </p>
+      ),
       key: "Men",
-      icon: <MailOutlined />,
+      // icon: <MailOutlined />,
     },
     {
       label: "Women",
@@ -44,11 +59,6 @@ const Header = () => {
       icon: <SettingOutlined />,
     },
     {
-      label: "Shoe Finder Quiz",
-      key: "Quiz",
-      icon: <SettingOutlined />,
-    },
-    {
       label: "About",
       key: "About",
       icon: <SettingOutlined />,
@@ -56,7 +66,7 @@ const Header = () => {
   ];
   return (
     <>
-      <div className="flex items-center justify-between p-4 sm:px-8 lg:px-16 xl:px-24">
+      <div className="flex items-center justify-between">
         {/* logo */}
         <span>
           <svg
@@ -107,7 +117,8 @@ const Header = () => {
             selectedKeys={[`${current}`]} // Remove the curly braces
             mode="horizontal"
             items={items}
-            className="w-[600px] p-0 m-0"
+            // className="hidden md:block p-0 m-0"
+            className="w-[500px] p-0 m-0"
           />
         </div>
 
