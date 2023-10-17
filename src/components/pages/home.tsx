@@ -1,8 +1,9 @@
 import { Carousel } from "antd";
-import { useQuery } from "react-query";
+import { useMutation, useQuery } from "react-query";
 import { api } from "../../api";
 import Header from "./headet";
 import "./loading.css";
+import axios from "axios";
 
 const contentStyle: React.CSSProperties = {
   height: "500px",
@@ -31,9 +32,25 @@ export interface Products {
 }
 
 const Home = () => {
+  // test branch sopa
   const { data, isLoading, isError } = useQuery("products", () => {
     return api.get("/products");
   });
+
+  const { data: dataa } = useQuery("productsa", () => {
+    return axios.get("http://192.168.1.48:8080/home");
+  });
+
+  const { mutate } = useMutation(() => {
+    return axios.post("http://192.168.1.48:8080/home", {
+      id: 2,
+      name: "Test",
+    });
+  });
+
+  // const dataaPost = () => {};
+
+  // console.log(dataa, "test data");
 
   if (isLoading) {
     return (
@@ -47,7 +64,7 @@ const Home = () => {
     );
   }
 
-  console.log(data?.data);
+  // console.log(data?.data);
 
   return (
     <>
