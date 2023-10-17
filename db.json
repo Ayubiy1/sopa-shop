@@ -49,6 +49,18 @@
       "userName": "admin",
       "password": "1234",
       "id": 6
+    },
+    {
+      "name": "Test Admin",
+      "userName": "admin",
+      "password": "admin",
+      "id": 7
+    },
+    {
+      "name": "Again test admin",
+      "userName": "admin",
+      "password": "1234",
+      "id": 8
     }
   ],
   "products": [

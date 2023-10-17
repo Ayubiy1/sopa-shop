@@ -27,7 +27,7 @@ const Login = () => {
     {
       onSuccess: () => {
         queryClient.invalidateQueries("listsJson");
-        console.log("success");
+        navigate("/");
       },
     }
   );
