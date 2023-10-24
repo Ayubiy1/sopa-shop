@@ -3,6 +3,8 @@ import { useMutation, useQuery } from "react-query";
 import { api } from "../../../api";
 import "../loading.css";
 import axios from "axios";
+import { setLoadingTrue } from "../../slices/store";
+import { useDispatch } from "react-redux";
 
 export interface Comments {
   id: number;
@@ -26,11 +28,13 @@ export interface Products {
 }
 
 const Corusell = () => {
+  const dispatch = useDispatch();
   const { data, isLoading, isError } = useQuery("products", () => {
     return api.get("/products");
   });
 
   if (isLoading) {
+    dispatch(setLoadingTrue(true));
     return (
       <div>
         <div id="spinner" className="active">
@@ -40,6 +44,9 @@ const Corusell = () => {
         </div>
       </div>
     );
+  }
+  if (!isLoading) {
+    dispatch(setLoadingTrue(false));
   }
 
   return (

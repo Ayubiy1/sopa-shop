@@ -1,6 +1,4 @@
-import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { api } from "../../api";
-// import { data, DataTypes, ListsTypes } from "../data";
+import { createSlice } from "@reduxjs/toolkit";
 
 export interface ListsTypes {
   id: number;
@@ -10,19 +8,33 @@ export interface ListsTypes {
 
 export interface CounterState {
   data: any;
+  loadingg: boolean;
+  collapsed: boolean;
 }
 
 const initialState: CounterState = {
   data: [],
+  loadingg: false,
+  collapsed: false,
 };
 
 const counterSlice = createSlice({
   name: "sopa",
   initialState,
   reducers: {
-    setRegister: (state, action) => {},
+    setLoadingTrue: (state, actions) => {
+      state.loadingg = actions.payload;
+    },
+    setLoadingFalse: (state, actions) => {
+      state.loadingg = true;
+    },
+
+    setCollapsed: (state, actions) => {
+      state.collapsed = actions.payload;
+    },
   },
 });
 
-export const { setRegister } = counterSlice.actions;
+export const { setLoadingTrue, setLoadingFalse, setCollapsed } =
+  counterSlice.actions;
 export default counterSlice.reducer;

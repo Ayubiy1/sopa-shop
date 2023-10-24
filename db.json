@@ -15,52 +15,40 @@
   ],
   "users": [
     {
-      "id": 1,
       "name": "Abdulloh Umarov",
-      "userName": "Abu",
-      "password": 12121
+      "userName": "Abu 122",
+      "phoneNomber": 999999999,
+      "password": 12121,
+      "date": "23-10-2023",
+      "productCount": 3,
+      "id": 1
     },
     {
-      "id": 2,
       "name": "Jasur Halilov",
-      "userName": "Jeck",
-      "password": 12121
+      "userName": "Jeckk",
+      "phoneNomber": 999999999,
+      "password": 12121,
+      "date": "23-10-2023",
+      "productCount": 5,
+      "id": 2
     },
     {
       "id": 3,
       "name": "Otabek Mahmudov",
       "userName": "Saladin",
-      "password": 12121
+      "password": 12121,
+      "phoneNomber": 999999999,
+      "date": "23-10-2023",
+      "productCount": 2
     },
     {
       "id": 4,
       "name": "Diyor",
       "userName": "Diko",
-      "password": 12121
-    },
-    {
-      "name": "Admin",
-      "userName": "admin",
-      "password": "admin",
-      "id": 5
-    },
-    {
-      "name": "Admin",
-      "userName": "admin",
-      "password": "1234",
-      "id": 6
-    },
-    {
-      "name": "Test Admin",
-      "userName": "admin",
-      "password": "admin",
-      "id": 7
-    },
-    {
-      "name": "Again test admin",
-      "userName": "admin",
-      "password": "1234",
-      "id": 8
+      "password": 12121,
+      "phoneNomber": 999999999,
+      "date": "23-10-2023",
+      "productCount": 7
     }
   ],
   "products": [

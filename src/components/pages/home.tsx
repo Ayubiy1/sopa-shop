@@ -1,11 +1,10 @@
-import { useMutation, useQuery } from "react-query";
-import { api } from "../../api";
 import "./loading.css";
-import axios from "axios";
-import Corusell from "./home-components/carusel";
 import Collections from "./home-components/collactions-card";
 import Discount from "./home-components/discount-products";
 import ManAndWoman from "./home-components/women-and-man";
+import { useSelector } from "react-redux";
+import { CounterState } from "../slices/store";
+import Corusell from "./home-components/corusell";
 
 export interface Comments {
   id: number;
@@ -28,17 +27,27 @@ export interface Products {
 }
 
 const Home = () => {
+  const stateLoading = useSelector((state: CounterState) => state.loadingg);
+  console.log(stateLoading);
+
   return (
     <>
-      <Corusell />
-
+      <div className="hidden md:block">
+        <Corusell />
+      </div>
       <Collections />
 
-      <div className="bg-[#02021D] text-white">
-        <Discount />
+      <div className="hiddenmd:block">
+        <div className="bg-[#02021D] text-white">
+          <Discount />
+        </div>
+        {stateLoading == false && (
+          <>
+            <ManAndWoman />
+            <footer>Free US shipping on order $80+</footer>
+          </>
+        )}
       </div>
-
-      <ManAndWoman />
     </>
   );
 };

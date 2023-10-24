@@ -1,6 +1,5 @@
 import Header from "./headet";
-import { Outlet, useLocation } from "react-router";
-import Home from "./home";
+import { Outlet } from "react-router";
 
 const Menu = () => {
   return (
@@ -9,8 +8,6 @@ const Menu = () => {
         <div className="p-4 sm:px-8 lg:px-16 xl:px-24">
           <Header />
         </div>
-
-        {/* <Home /> */}
 
         <Outlet />
       </div>

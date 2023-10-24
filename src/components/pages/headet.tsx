@@ -2,13 +2,14 @@ import {
   AppstoreOutlined,
   MailOutlined,
   SettingOutlined,
+  MenuFoldOutlined,
 } from "@ant-design/icons";
 import { useLocalStorageState } from "ahooks";
 import type { MenuProps } from "antd";
-import { Menu } from "antd";
+import { Button, Drawer, Menu } from "antd";
 import MenuItem from "antd/es/menu/MenuItem";
 import { useState } from "react";
-import { useLocation, useNavigate } from "react-router";
+import { useNavigate } from "react-router";
 
 const Header = () => {
   const [current, setCurrent] = useLocalStorageState<string | undefined>(
@@ -18,15 +19,22 @@ const Header = () => {
     }
   );
 
+  const [open, setOpen] = useState(false);
+
+  const showDrawer = () => {
+    setOpen(true);
+  };
+
+  const onClose = () => {
+    setOpen(false);
+  };
   const navigate = useNavigate();
-  const location = useLocation();
 
   const onClick: MenuProps["onClick"] = (e) => {
     console.log("click ", e);
     setCurrent(e.key);
   };
 
-  //
   const items: MenuProps["items"] = [
     {
       label: (
@@ -36,7 +44,6 @@ const Header = () => {
         </p>
       ),
       key: "All",
-      // icon: <SettingOutlined />,
     },
     {
       label: (
@@ -46,17 +53,15 @@ const Header = () => {
         </p>
       ),
       key: "Men",
-      // icon: <MailOutlined />,
     },
     {
-      label: "Women",
+      label: (
+        <p onClick={() => navigate("women")}>
+          <AppstoreOutlined />
+          Women
+        </p>
+      ),
       key: "Women",
-      icon: <AppstoreOutlined />,
-    },
-    {
-      label: "Accessories",
-      key: "Accessories",
-      icon: <SettingOutlined />,
     },
     {
       label: "About",
@@ -117,13 +122,12 @@ const Header = () => {
             selectedKeys={[`${current}`]} // Remove the curly braces
             mode="horizontal"
             items={items}
-            // className="hidden md:block p-0 m-0"
             className="w-[500px] p-0 m-0"
           />
         </div>
 
         <div className="flex items-center gap-5">
-          <p className="cursor-pointer">Support</p>
+          <p className="cursor-pointer hidden sm:block">Support</p>
 
           <span className="cursor-pointer" onClick={() => navigate("/login")}>
             <svg
@@ -150,7 +154,7 @@ const Header = () => {
             </svg>
           </span>
 
-          <span className="cursor-pointer">
+          <span className="cursor-pointer hidden sm:block">
             <svg
               width="24"
               height="24"
@@ -181,20 +185,50 @@ const Header = () => {
               />
             </svg>
           </span>
+
+          <Button className="flex items-center lg:hidden" onClick={showDrawer}>
+            <MenuFoldOutlined />
+          </Button>
         </div>
       </div>
+
+      <Drawer
+        title="Basic Drawer"
+        placement="right"
+        onClose={onClose}
+        open={open}
+      >
+        <Menu onClick={onClick} selectedKeys={[`${current}`]} className="">
+          <MenuItem key={"All"} onClick={() => navigate("/")}>
+            <SettingOutlined />
+            All
+          </MenuItem>
+
+          <MenuItem key={"Men"} onClick={() => navigate("men")}>
+            <MailOutlined />
+            Men
+          </MenuItem>
+
+          <MenuItem key={"Women"} onClick={() => navigate("men")}>
+            <AppstoreOutlined />
+            Women
+          </MenuItem>
+
+          <MenuItem key={"About"} onClick={() => navigate("men")}>
+            <MailOutlined />
+            About
+          </MenuItem>
+        </Menu>
+
+        <div className="flex gap-10 justify-center items-center mt-5">
+          <p className="cursor-pointer hidden sm:block">Support</p>
+
+          <span className="cursor-pointer" onClick={() => navigate("/login")}>
+            Login
+          </span>
+        </div>
+      </Drawer>
     </>
   );
 };
 export default Header;
-
-{
-  /* 
-        <ul>
-          <li>Men</li>
-          <li>Women</li>
-          <li>Accessories</li>
-          <li>About</li>
-          <li>Shoe Finder Quiz</li>
-        </ul> */
-}

@@ -1,26 +1,27 @@
 import React from "react";
-import "./App.css";
 import { Route, Routes } from "react-router";
+import "./App.css";
 import Menu from "./components/pages/menu";
-import { useQuery } from "react-query";
-import { Outlet, useLocation } from "react-router";
-import { api } from "./api";
 import Login from "./components/pages/login";
 import Home from "./components/pages/home";
+import Admin from "./components/admin";
+import Layouts from "./components/admin/Layouts";
+import Users from "./components/admin/users";
 
 function App() {
-  const {
-    data: dataUsers,
-    isLoading: isLoadingUsers,
-    isError: isErrorUsers,
-  } = useQuery("users", () => api.get("/users"));
-
   return (
     <div className="App">
       <Routes>
         <Route path="/" element={<Menu />}>
           <Route path="/" element={<Home />} />
           <Route path="/men" element={<>Men</>} />
+          <Route path="/women" element={<>Women</>} />
+        </Route>
+
+        <Route path="admin" element={<Admin />}>
+          <Route path="products" element={<Layouts />} />
+          <Route path="users" element={<Users />} />
+          <Route path="admins" element={<Users />} />
         </Route>
 
         <Route path="/login" element={<Login />} />

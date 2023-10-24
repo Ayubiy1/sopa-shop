@@ -110,7 +110,7 @@ const Discount = () => {
               })}
           </div>
 
-          <div>
+          <div className="hidden lg:block">
             {data?.data
               .filter((i: Products) => i.superPirce !== null)
               .slice(1, 2)
