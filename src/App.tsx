@@ -7,6 +7,7 @@ import Home from "./components/pages/home";
 import Admin from "./components/admin";
 import Layouts from "./components/admin/Layouts";
 import Users from "./components/admin/users";
+import AdminPage from "./components/admin/admins";
 
 function App() {
   return (
@@ -21,7 +22,7 @@ function App() {
         <Route path="admin" element={<Admin />}>
           <Route path="products" element={<Layouts />} />
           <Route path="users" element={<Users />} />
-          <Route path="admins" element={<Users />} />
+          <Route path="admins" element={<AdminPage />} />
         </Route>
 
         <Route path="/login" element={<Login />} />

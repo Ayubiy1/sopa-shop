@@ -1,5 +1,6 @@
 import { Layout, theme } from "antd";
 import Contents from "./content";
+import NewProduct from "./new-product";
 
 const { Content } = Layout;
 
@@ -17,8 +18,11 @@ const Layouts = () => {
           minHeight: 280,
           background: colorBgContainer,
           overflowX: "scroll",
+          position: "relative",
         }}
       >
+        <NewProduct />
+
         <Contents />
       </Content>
     </>

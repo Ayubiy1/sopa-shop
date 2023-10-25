@@ -1,9 +1,10 @@
-import { Button, Form, Layout, Table } from "antd";
+import { Button, Layout, Table } from "antd";
 import { EditOutlined, DeleteOutlined } from "@ant-design/icons";
-import { useQuery } from "react-query";
+import { useMutation, useQuery, useQueryClient } from "react-query";
 import { api } from "../../api";
 import { useState } from "react";
 import EditUser from "./edit-user";
+import { ToastContainer, toast } from "react-toastify";
 
 const { Content } = Layout;
 
@@ -25,12 +26,27 @@ export interface UsersType {
 }
 
 const Users = () => {
-  const form = Form.useForm();
+  const quertClinet = useQueryClient();
+  const notify = () => toast.success("Mahsulot ochirildi!");
+  const notifyError = () =>
+    toast.error("Mahsulot ochirilishda xatolik yuz berdi!");
 
   // Get data Users
   const { data, isLoading } = useQuery("users-admin", () => {
-    return api.get("/users");
+    return api.get("/users?rol=user");
   });
+
+  const { mutate, isLoading: isLoadingDelete } = useMutation(
+    (deleteId) => {
+      return api.delete(`/users/${deleteId}`);
+    },
+    {
+      onSuccess: () => {
+        quertClinet.invalidateQueries(["users-admin"]);
+        notify();
+      },
+    }
+  );
 
   const [open, setOpen] = useState(false);
   const [userId, setUserId] = useState<number>(1);
@@ -88,7 +104,12 @@ const Users = () => {
             <EditOutlined />
           </Button>
 
-          <Button type="primary" danger className="flex items-center">
+          <Button
+            type="primary"
+            danger
+            className="flex items-center"
+            onClick={() => mutate(row?.id)}
+          >
             <DeleteOutlined />
           </Button>
         </div>
@@ -98,6 +119,7 @@ const Users = () => {
 
   return (
     <>
+      <ToastContainer />
       <Content
         style={{
           margin: "24px 16px",
@@ -113,7 +135,7 @@ const Users = () => {
           pagination={{
             pageSize: 5,
           }}
-          loading={isLoading}
+          loading={isLoading || isLoadingDelete}
         />
       </Content>
 

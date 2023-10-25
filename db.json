@@ -16,39 +16,43 @@
   "users": [
     {
       "name": "Abdulloh Umarov",
-      "userName": "Abu 122",
+      "userName": "Abu Bely",
       "phoneNomber": 999999999,
       "password": 12121,
       "date": "23-10-2023",
       "productCount": 3,
-      "id": 1
+      "id": 1,
+      "rol": "user"
     },
     {
       "name": "Jasur Halilov",
-      "userName": "Jeckk",
+      "userName": "Jeck",
       "phoneNomber": 999999999,
       "password": 12121,
       "date": "23-10-2023",
       "productCount": 5,
-      "id": 2
+      "id": 2,
+      "rol": "admin"
     },
     {
-      "id": 3,
       "name": "Otabek Mahmudov",
       "userName": "Saladin",
-      "password": 12121,
       "phoneNomber": 999999999,
+      "password": 12121,
+      "rol": "admin",
       "date": "23-10-2023",
-      "productCount": 2
+      "productCount": 2,
+      "id": 3
     },
     {
-      "id": 4,
-      "name": "Diyor",
-      "userName": "Diko",
-      "password": 12121,
+      "name": "Diyora",
+      "userName": "Diyora",
       "phoneNomber": 999999999,
+      "password": 12121,
+      "rol": "user",
       "date": "23-10-2023",
-      "productCount": 7
+      "productCount": 7,
+      "id": 4
     }
   ],
   "products": [
@@ -57,13 +61,13 @@
       "name": "Model 000",
       "price": 12,
       "superPirce": 10,
-      "buyCount": 212,
+      "buyCount": "112",
       "poductInfo": "Make putting on your shoes as easy as pulling on a T-shirt with Sopa Stretch Laces - their unique stretching properties adapt to your foot's movements and prevent getting untied, and now you can customize with multiple vibrant colors in the right size for your Sopa shoe",
       "comments": [],
       "img": "https://res.cloudinary.com/atoms-shoes/image/upload/q_auto,f_auto/v1649178687/products/shoes/model000/black_and_white_000_side_profile_single_-_background_f2f2f2_-_compressed_ytztl9.jpg",
+      "data": "12/12/2014",
       "type": "Men",
-      "status": "old",
-      "data": "12/12/2014"
+      "status": "old"
     },
     {
       "id": 2,
@@ -79,10 +83,10 @@
       "data": "12/12/2014"
     },
     {
-      "id": 3,
+      "id": 11,
       "name": "Do'ppi",
-      "price": 6,
-      "superPirce": null,
+      "price": 11,
+      "superPirce": 5,
       "buyCount": 9756,
       "poductInfo": "Make putting on your shoes as easy as pulling on a T-shirt with Sopa Stretch Laces - their unique stretching properties adapt to your foot's movements and prevent getting untied, and now you can customize with multiple vibrant colors in the right size for your Sopa shoe",
       "comments": [],
@@ -181,6 +185,18 @@
       "type": "Men",
       "status": "new",
       "data": "12/12/2014"
+    },
+    {
+      "id": 12,
+      "name": "Do'ppi test",
+      "price": "12",
+      "superPirce": "11",
+      "buyCount": "12",
+      "comments": [],
+      "img": "data:image/jpeg;base64,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",
+      "data": "2023-10-25T17:02:21.507Z",
+      "type": "Men",
+      "status": "Old"
     }
   ]
 }

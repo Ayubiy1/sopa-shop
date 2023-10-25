@@ -15,7 +15,7 @@ const Siders = () => {
     defaultValue: 1,
   });
 
-  console.log(location.pathname.slice(7, location.pathname.length));
+  // console.log(location.pathname.slice(7, location.pathname.length));
   const activeMenuItem = location.pathname.slice(7, location.pathname.length);
 
   return (
