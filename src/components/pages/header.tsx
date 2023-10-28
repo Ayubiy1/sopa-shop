@@ -4,14 +4,22 @@ import {
   SettingOutlined,
   MenuFoldOutlined,
 } from "@ant-design/icons";
-import { useLocalStorageState } from "ahooks";
+import { useDebounce, useLocalStorageState } from "ahooks";
 import type { MenuProps } from "antd";
-import { Button, Drawer, Menu } from "antd";
+import { Button, Drawer, Input, Menu } from "antd";
 import MenuItem from "antd/es/menu/MenuItem";
 import { useState } from "react";
 import { useNavigate } from "react-router";
+import { setSearch } from "../slices/store";
+import { useDispatch, useSelector } from "react-redux";
+
+const { Search } = Input;
 
 const Header = () => {
+  const state = useSelector((state: string) => state?.search);
+
+  const dispatch = useDispatch();
+
   const [current, setCurrent] = useLocalStorageState<string | undefined>(
     "Menus",
     {
@@ -19,6 +27,8 @@ const Header = () => {
     }
   );
 
+  const [value, setValue] = useState<string>();
+  const debouncedValue = useDebounce(value, { wait: 500 });
   const [open, setOpen] = useState(false);
 
   const showDrawer = () => {
@@ -35,40 +45,6 @@ const Header = () => {
     setCurrent(e.key);
   };
 
-  const items: MenuProps["items"] = [
-    {
-      label: (
-        <p onClick={() => navigate("/")}>
-          <SettingOutlined />
-          All
-        </p>
-      ),
-      key: "All",
-    },
-    {
-      label: (
-        <p onClick={() => navigate("men")}>
-          <MailOutlined />
-          Men
-        </p>
-      ),
-      key: "Men",
-    },
-    {
-      label: (
-        <p onClick={() => navigate("women")}>
-          <AppstoreOutlined />
-          Women
-        </p>
-      ),
-      key: "Women",
-    },
-    {
-      label: "About",
-      key: "About",
-      icon: <SettingOutlined />,
-    },
-  ];
   return (
     <>
       <div className="flex items-center justify-between">
@@ -117,12 +93,12 @@ const Header = () => {
         </span>
 
         <div className="hidden lg:block">
-          <Menu
-            onClick={onClick}
-            selectedKeys={[`${current}`]} // Remove the curly braces
-            mode="horizontal"
-            items={items}
-            className="w-[500px] p-0 m-0"
+          <Search
+            placeholder="input search text"
+            enterButton
+            onChange={(e) => {
+              dispatch(setSearch(e.target.value));
+            }}
           />
         </div>
 

@@ -10,12 +10,14 @@ export interface CounterState {
   data: any;
   loadingg: boolean;
   collapsed: boolean;
+  search: string | number;
 }
 
 const initialState: CounterState = {
   data: [],
   loadingg: false,
   collapsed: false,
+  search: "",
 };
 
 const counterSlice = createSlice({
@@ -32,9 +34,13 @@ const counterSlice = createSlice({
     setCollapsed: (state, actions) => {
       state.collapsed = actions.payload;
     },
+
+    setSearch: (state, actions) => {
+      state.search = actions.payload;
+    },
   },
 });
 
-export const { setLoadingTrue, setLoadingFalse, setCollapsed } =
+export const { setLoadingTrue, setLoadingFalse, setCollapsed, setSearch } =
   counterSlice.actions;
 export default counterSlice.reducer;

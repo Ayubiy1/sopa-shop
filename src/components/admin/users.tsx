@@ -5,6 +5,7 @@ import { api } from "../../api";
 import { useState } from "react";
 import EditUser from "./edit-user";
 import { ToastContainer, toast } from "react-toastify";
+import dayjs from "dayjs";
 
 const { Content } = Layout;
 
@@ -81,6 +82,7 @@ const Users = () => {
       title: "Kirgan sana",
       dataIndex: "date",
       key: "date",
+      render: (text: string) => <>{dayjs(text).format("DD.MM.YY")}</>,
     },
     {
       title: "Buyurtmalar soni",

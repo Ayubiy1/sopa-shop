@@ -1,10 +1,9 @@
 import { Carousel } from "antd";
-import { useMutation, useQuery } from "react-query";
-import { api } from "../../../api";
-import "../loading.css";
-import axios from "axios";
-import { setLoadingTrue } from "../../slices/store";
+import { useQuery } from "react-query";
 import { useDispatch } from "react-redux";
+import "../loading.css";
+import { api } from "../../../api";
+import { setLoadingTrue } from "../../slices/store";
 
 export interface Comments {
   id: number;
