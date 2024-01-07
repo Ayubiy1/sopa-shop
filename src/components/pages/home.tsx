@@ -6,6 +6,8 @@ import { useSelector } from "react-redux";
 import { CounterState } from "../slices/store";
 import Corusell from "./home-components/corusell";
 import { useFavicon, useGetState, useNetwork, useTitle } from "ahooks";
+import { useQuery } from "react-query";
+import axios from "axios";
 
 export interface Comments {
   id: number;
@@ -43,6 +45,11 @@ export const DEFAULT_FAVICON_URL =
 const Home = () => {
   const stateLoading = useSelector((state: CounterState) => state.loadingg);
   const [url, setUrl] = useGetState<string>(DEFAULT_FAVICON_URL);
+
+  const { data: dataUser } = useQuery("users", () => {
+    return axios.get("http://192.168.1.48:8080/user");
+  });
+  console.log(dataUser?.data);
 
   // user informations
   const result: NetworkState = useNetwork();

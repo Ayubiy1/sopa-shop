@@ -94,7 +94,7 @@ const Header = () => {
 
         <div className="hidden lg:block">
           <Search
-            placeholder="input search text"
+            placeholder="Mahsulotni 1 kunda yetkazib bermaiz"
             enterButton
             onChange={(e) => {
               dispatch(setSearch(e.target.value));

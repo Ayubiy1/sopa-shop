@@ -6,6 +6,7 @@ import EditProduct from "./edit-products";
 import { useState } from "react";
 import { UsersType } from "./users";
 import { ToastContainer, toast } from "react-toastify";
+import axios from "axios";
 
 export interface ProductType {
   id?: number | string;
@@ -35,6 +36,11 @@ const Contents = () => {
   const { data, isLoading } = useQuery("products-admin", () => {
     return api.get("/products");
   });
+
+  const { data: dataUser } = useQuery("users", () => {
+    return axios.get("http://192.168.1.48:8080/user");
+  });
+  console.log(data?.data);
 
   const { mutate, isLoading: isLoadingDelete } = useMutation(
     (deleteId) => {

@@ -1,7 +1,7 @@
 import axios from "axios";
 
 export const api = axios.create({
-  baseURL: "  http://localhost:3005",
+  baseURL: "  https://sopa-shop.onrender.com/",
   timeout: 30 * 1000,
   headers: {
     "Content-Type": "application/json",
